@@ -4,6 +4,7 @@
 .settings
 *.pdf
 *.sql
+*.swp
 templates/tos.html
 settings.py
 media/img/logo.png
