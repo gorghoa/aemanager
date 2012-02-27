@@ -36,6 +36,13 @@ class SalesLimit(models.Model):
     limit = models.IntegerField(verbose_name=_('Limit'))
     limit2 = models.IntegerField(verbose_name=_('Limit 2'))
 
+    def __unicode__(self):
+        for i in AUTOENTREPRENEUR_ACTIVITY:
+            if i[0]==self.activity:
+                act=i[1]
+                continue
+        return u"%d, %s" %(self.year,act)
+
 SUBSCRIPTION_STATE_NOT_PAID = 1
 SUBSCRIPTION_STATE_PAID = 2
 SUBSCRIPTION_STATE_TRIAL = 3
@@ -44,6 +51,7 @@ SUBSCRIPTION_STATE = ((SUBSCRIPTION_STATE_NOT_PAID, _('Not paid')),
                       (SUBSCRIPTION_STATE_PAID, _('Paid')),
                       (SUBSCRIPTION_STATE_TRIAL, _('Trial')),
                       (SUBSCRIPTION_STATE_FREE, _('Free')))
+
 
 class SubscriptionManager(models.Manager):
     def get_not_paid_subscription(self, user):
